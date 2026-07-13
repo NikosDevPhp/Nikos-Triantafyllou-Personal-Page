@@ -1,5 +1,6 @@
 // ---- current year ----
-document.getElementById("year").textContent = new Date().getFullYear();
+var yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 // ---- theme toggle (persisted) ----
 (function () {
@@ -11,6 +12,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
   const apply = (t) => root.setAttribute("data-theme", t);
   apply(saved || (prefersDark ? "dark" : "light"));
 
+  if (!toggle) return;
   toggle.addEventListener("click", () => {
     const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
     apply(next);
