@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nikos Triantafyllou — Software Developer. Personal page." />
+  <meta name="author" content="Nikos Triantafyllou" />
+  <meta name="theme-color" content="#1b1a17" />
+  <title>Nikos Triantafyllou — Developer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23e07a5f'/%3E%3Ctext x='50' y='68' font-size='58' font-family='monospace' font-weight='700' text-anchor='middle' fill='%231b1a17'%3ENT%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <!-- decorative grain overlay -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ===== NAV ===== -->
+  <header class="nav">
+    <a href="#top" class="nav__brand">
+      <span class="nav__mark">NT</span>
+      <span class="nav__name">Nikos&nbsp;Triantafyllou</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#stack">Stack</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">
+      <span class="theme-toggle__dot"></span>
+    </button>
+  </header>
+
+  <main id="top">
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="hero__grid" aria-hidden="true"></div>
+      <div class="hero__inner">
+        <p class="hero__eyebrow">
+          <span class="blink">▍</span> Hello world, I'm
+        </p>
+        <h1 class="hero__title">
+          Nikos
+          <span class="hero__title-accent">Triantafyllou</span>
+        </h1>
+        <p class="hero__role">
+          Software Developer &nbsp;·&nbsp; building the web with care
+        </p>
+        <p class="hero__lede">
+          I design and ship clean, dependable software — from tidy back-ends
+          to interfaces that feel good to use. Old-school craft, modern tools.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#work">See my work</a>
+          <a class="btn btn--ghost" href="#contact">Get in touch</a>
+        </div>
+
+        <ul class="hero__facts">
+          <li><strong>07+</strong><span>years shipping</span></li>
+          <li><strong>PHP</strong><span>&amp; friends</span></li>
+          <li><strong>GR</strong><span>based · remote</span></li>
+        </ul>
+      </div>
+
+      <div class="hero__terminal" aria-hidden="true">
+        <div class="term__bar">
+          <span></span><span></span><span></span>
+          <p class="term__title">~/nikos — zsh</p>
+        </div>
+        <pre class="term__body"><span class="c-dim">$</span> whoami
+<span class="c-out">nikos — developer, tinkerer, coffee-driven</span>
+<span class="c-dim">$</span> cat stack.txt
+<span class="c-out">php · laravel · js · sql · docker · git</span>
+<span class="c-dim">$</span> ./say-hello --to=you
+<span class="c-acc">Welcome. Scroll on. →</span>
+<span class="c-dim">$</span> <span class="blink">▍</span></pre>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="section">
+      <div class="section__head">
+        <span class="section__no">01</span>
+        <h2 class="section__title">About</h2>
+        <span class="section__rule" aria-hidden="true"></span>
+      </div>
+      <div class="about">
+        <div class="about__text">
+          <p>
+            I'm a software developer who likes things <em>well built</em>: readable code,
+            sensible architecture, and interfaces that respect the person using them.
+          </p>
+          <p>
+            My background leans toward the back-end — designing data models, writing
+            APIs, and keeping systems reliable — but I enjoy the full journey from
+            an empty file to something people actually use.
+          </p>
+          <p>
+            When I'm away from the keyboard you'll usually find me chasing good coffee,
+            reading, or poking at some side project that probably didn't need to exist.
+          </p>
+        </div>
+        <aside class="about__card">
+          <h3>At a glance</h3>
+          <dl>
+            <div><dt>Role</dt><dd>Software Developer</dd></div>
+            <div><dt>Focus</dt><dd>Back-end · Web</dd></div>
+            <div><dt>Location</dt><dd>Greece · Remote</dd></div>
+            <div><dt>Status</dt><dd><span class="dot dot--live"></span>Open to chat</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== STACK ===== -->
+    <section id="stack" class="section">
+      <div class="section__head">
+        <span class="section__no">02</span>
+        <h2 class="section__title">Stack</h2>
+        <span class="section__rule" aria-hidden="true"></span>
+      </div>
+      <ul class="stack">
+        <li class="stack__item"><span class="stack__key">Languages</span>PHP · JavaScript · SQL</li>
+        <li class="stack__item"><span class="stack__key">Frameworks</span>Laravel · Symfony · Node</li>
+        <li class="stack__item"><span class="stack__key">Front-end</span>HTML · CSS · Vanilla JS</li>
+        <li class="stack__item"><span class="stack__key">Data</span>MySQL · PostgreSQL · Redis</li>
+        <li class="stack__item"><span class="stack__key">Tooling</span>Git · Docker · CI/CD</li>
+        <li class="stack__item"><span class="stack__key">Practice</span>Testing · Clean code · Reviews</li>
+      </ul>
+    </section>
+
+    <!-- ===== WORK ===== -->
+    <section id="work" class="section">
+      <div class="section__head">
+        <span class="section__no">03</span>
+        <h2 class="section__title">Selected Work</h2>
+        <span class="section__rule" aria-hidden="true"></span>
+      </div>
+      <p class="section__note">A few placeholders — real case studies coming soon.</p>
+      <div class="work">
+        <article class="card">
+          <header class="card__top">
+            <span class="card__tag">Web App</span>
+            <span class="card__year">2025</span>
+          </header>
+          <h3 class="card__title">Ledger &amp; Reports</h3>
+          <p class="card__desc">A back-office tool for tracking transactions with exportable, human-friendly reports.</p>
+          <ul class="card__stack"><li>Laravel</li><li>MySQL</li><li>Charts</li></ul>
+        </article>
+        <article class="card">
+          <header class="card__top">
+            <span class="card__tag">API</span>
+            <span class="card__year">2024</span>
+          </header>
+          <h3 class="card__title">Service Gateway</h3>
+          <p class="card__desc">A tidy REST layer with auth, rate-limiting and clear docs sitting in front of legacy services.</p>
+          <ul class="card__stack"><li>PHP</li><li>Redis</li><li>OpenAPI</li></ul>
+        </article>
+        <article class="card">
+          <header class="card__top">
+            <span class="card__tag">Side Project</span>
+            <span class="card__year">2023</span>
+          </header>
+          <h3 class="card__title">This Very Page</h3>
+          <p class="card__desc">A retro-modern personal site, hand-built and hosted on GitHub Pages.</p>
+          <ul class="card__stack"><li>HTML</li><li>CSS</li><li>JS</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="section section--contact">
+      <div class="section__head">
+        <span class="section__no">04</span>
+        <h2 class="section__title">Say hello</h2>
+        <span class="section__rule" aria-hidden="true"></span>
+      </div>
+      <div class="contact">
+        <p class="contact__lede">
+          Got a project, a question, or just want to talk shop?
+          My inbox is always open.
+        </p>
+        <a class="btn btn--primary btn--big" href="mailto:niktriant89@gmail.com">niktriant89@gmail.com</a>
+        <div class="contact__links">
+          <a href="https://github.com/NikosDevPhp" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="mailto:niktriant89@gmail.com">Email ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year">2026</span> Nikos Triantafyllou</p>
+    <p class="footer__meta">Hand-built · Hosted on GitHub Pages</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
