@@ -1,0 +1,49 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection, render } from "astro:content";
+import type { GetStaticPaths } from "astro";
+
+const slugOf = (id: string) => id.replace(/^\d{4}-\d{2}-\d{2}-/, "");
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/^\d{4}-\d{2}-\d{2}-/, "") },
+    props: { post },
+  }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const fmt = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
+const words = (post.body ?? "").trim().split(/\s+/).filter(Boolean).length;
+const mins = Math.max(1, Math.round(words / 200));
+---
+
+<Base title={`${post.data.title} — Nikos Triantafyllou`} description={post.data.summary} active="writing">
+  <main class="page page--article">
+    <header class="prose__head">
+      <a class="prose__back" href={`${base}/writing/`}>← All writing</a>
+      <div class="post__meta">
+        <time datetime={post.data.date.toISOString()}>{fmt.format(post.data.date)}</time>
+        <span>{mins} min read</span>
+        {post.data.tags.map((t) => <span class="post__tag">{t}</span>)}
+      </div>
+      <h1 class="prose__title">{post.data.title}</h1>
+    </header>
+
+    <article class="prose">
+      <Content />
+    </article>
+
+    <footer class="prose__foot">
+      <a class="prose__back" href={`${base}/writing/`}>← Back to all writing</a>
+    </footer>
+  </main>
+</Base>

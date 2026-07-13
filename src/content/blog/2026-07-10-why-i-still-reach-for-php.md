@@ -2,10 +2,8 @@
 title: Why I Still Reach for PHP in 2026
 date: 2026-07-10
 summary: A quiet defense of a language everyone loves to dunk on — and why it keeps shipping real products.
-tags: php, backend, opinion
+tags: [php, backend, opinion]
 ---
-
-# Why I Still Reach for PHP in 2026
 
 Every year someone declares PHP dead, and every year a large chunk of the web
 keeps running on it. At some point you have to ask whether the language is the

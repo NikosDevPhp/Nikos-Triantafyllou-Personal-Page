@@ -1,0 +1,59 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const fmt = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
+const slugOf = (id: string) => id.replace(/^\d{4}-\d{2}-\d{2}-/, "");
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+---
+
+<Base
+  title="Writing — Nikos Triantafyllou"
+  description="Writing by Nikos Triantafyllou — notes on software, back-end, and building things."
+  active="writing"
+>
+  <main class="page">
+    <section class="page__head">
+      <p class="hero__eyebrow"><span class="blink">▍</span> ~/writing</p>
+      <h1 class="page__title">Writing</h1>
+      <p class="page__lede">
+        Notes on software, back-end craft, and whatever I've been thinking about.
+        Nothing polished — just things I wanted to write down.
+      </p>
+    </section>
+
+    <section class="posts">
+      {
+        posts.length === 0 ? (
+          <p class="blog__empty">
+            No articles yet. Add a Markdown file to <code>src/content/blog/</code>.
+          </p>
+        ) : (
+          posts.map((post) => (
+            <a class="post" href={`${base}/writing/${slugOf(post.id)}/`}>
+              <div class="post__meta">
+                <time datetime={post.data.date.toISOString()}>
+                  {fmt.format(post.data.date)}
+                </time>
+                {post.data.tags.slice(0, 3).map((t) => (
+                  <span class="post__tag">{t}</span>
+                ))}
+              </div>
+              <h2 class="post__title">{post.data.title}</h2>
+              <p class="post__summary">{post.data.summary}</p>
+              <span class="post__more">Read the piece →</span>
+            </a>
+          ))
+        )
+      }
+    </section>
+  </main>
+</Base>

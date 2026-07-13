@@ -100,6 +100,8 @@ a { color: inherit; text-decoration: none; }
   width: 0; height: 2px; background: var(--accent); transition: width .25s ease;
 }
 .nav__links a:hover::after { width: 100%; }
+.nav__links a[aria-current="page"] { color: var(--accent); }
+.nav__links a[aria-current="page"]::after { width: 100%; }
 
 .theme-toggle {
   width: 44px; height: 26px;
@@ -361,7 +363,6 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* reveal on scroll */
-.section, .hero__inner, .hero__terminal { opacity: 1; }
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
@@ -483,19 +484,21 @@ a { color: inherit; text-decoration: none; }
 .prose em { font-style: italic; font-family: var(--font-serif); }
 .prose ul, .prose ol { padding-left: 1.4rem; }
 .prose li { margin: .35rem 0; }
-.prose code {
+
+/* inline code (fenced blocks are highlighted by Shiki, styled below) */
+.prose :not(pre) > code {
   font-family: var(--font-mono); font-size: .86em;
   background: var(--paper-2); padding: .12rem .4rem; border-radius: 6px;
   border: 1px solid var(--line);
 }
-.prose pre.code {
-  background: #14131a; color: #d6d3de;
+/* Shiki code blocks */
+.prose pre {
   border: 2px solid var(--ink); border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 1.1rem 1.2rem; overflow-x: auto;
   font-size: .86rem; line-height: 1.7;
 }
-.prose pre.code code { background: none; border: 0; padding: 0; color: inherit; font-size: 1em; }
+.prose pre code { font-family: var(--font-mono); background: none; border: 0; padding: 0; }
 .prose blockquote {
   border-left: 4px solid var(--accent);
   padding: .4rem 0 .4rem 1.2rem; margin-left: 0;
@@ -505,6 +508,3 @@ a { color: inherit; text-decoration: none; }
 .prose blockquote p { margin: 0; }
 .prose img { max-width: 100%; height: auto; border-radius: var(--radius); border: 2px solid var(--ink); }
 .prose hr { border: 0; border-top: 2px dashed var(--line); margin: 2rem 0; }
-
-.nav__links a[aria-current="page"] { color: var(--accent); }
-.nav__links a[aria-current="page"]::after { width: 100%; }
