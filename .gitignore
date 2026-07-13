@@ -1,0 +1,7 @@
+node_modules/
+package.json
+package-lock.json
+v-*.png
+preview-*.png
+vshot.js
+shot*.js

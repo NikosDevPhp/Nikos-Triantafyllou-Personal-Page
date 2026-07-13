@@ -132,23 +132,21 @@ a { color: inherit; text-decoration: none; }
   padding: 0;
   flex-shrink: 0;
 }
-.nav__toggle .bar,
-.nav__toggle .bar::before,
-.nav__toggle .bar::after {
-  content: "";
-  position: absolute;
-  left: 10px;
-  width: 18px; height: 2px;
-  background: var(--ink);
-  border-radius: 2px;
-  transition: transform .25s ease, opacity .2s ease, top .25s ease;
+.nav__toggle-ico {
+  display: block;
+  margin: 0 auto;
 }
-.nav__toggle .bar { top: 15px; }
-.nav__toggle .bar::before { top: -6px; left: 0; }
-.nav__toggle .bar::after  { top: 6px;  left: 0; }
-.nav.open .nav__toggle .bar { background: transparent; }
-.nav.open .nav__toggle .bar::before { top: 0; transform: rotate(45deg); }
-.nav.open .nav__toggle .bar::after  { top: 0; transform: rotate(-45deg); }
+.nav__toggle-ico line {
+  stroke: var(--ink);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  transition: opacity .2s ease, transform .25s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.nav.open .nav__toggle-ico line:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+.nav.open .nav__toggle-ico line:nth-child(2) { opacity: 0; }
+.nav.open .nav__toggle-ico line:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
 
 /* ===================== HERO ===================== */
 .hero {
