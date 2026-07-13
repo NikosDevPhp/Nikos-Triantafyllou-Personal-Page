@@ -1,0 +1,17 @@
+# build output
+dist/
+# generated types / astro cache
+.astro/
+# dependencies
+node_modules/
+# logs & env
+npm-debug.log*
+.env
+.env.production
+# os / editor
+.DS_Store
+# local screenshot scratch
+v-*.png
+preview-*.png
+vshot.js
+shot*.js

@@ -1,0 +1,161 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  /** which primary nav item is active */
+  active?: "home" | "writing";
+}
+
+const {
+  title,
+  description = "Nikos Triantafyllou — Software Developer. Personal page.",
+  active,
+} = Astro.props;
+
+// normalize: no trailing slash, so `${base}/path/` always joins cleanly
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Nikos Triantafyllou" />
+    <meta name="theme-color" content="#1b1a17" />
+    <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23e07a5f'/%3E%3Ctext x='50' y='68' font-size='58' font-family='monospace' font-weight='700' text-anchor='middle' fill='%231b1a17'%3ENT%3C/text%3E%3C/svg%3E"
+    />
+
+    <!-- set theme before paint to avoid a flash -->
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.setAttribute(
+            "data-theme",
+            saved || (dark ? "dark" : "light"),
+          );
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <header class="nav">
+      <a href={`${base}/`} class="nav__brand">
+        <span class="nav__mark">NT</span>
+        <span class="nav__name">Nikos&nbsp;Triantafyllou</span>
+      </a>
+      <nav class="nav__links" id="navLinks" aria-label="Primary">
+        <a href={`${base}/#about`}>About</a>
+        <a href={`${base}/#stack`}>Stack</a>
+        <a href={`${base}/#work`}>Work</a>
+        <a href={`${base}/writing/`} aria-current={active === "writing" ? "page" : undefined}>Writing</a>
+        <a href={`${base}/#contact`}>Contact</a>
+      </nav>
+      <button
+        class="theme-toggle"
+        id="themeToggle"
+        type="button"
+        aria-label="Toggle color theme"
+      >
+        <span class="theme-toggle__dot"></span>
+      </button>
+      <button
+        class="nav__toggle"
+        id="navToggle"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <svg class="nav__toggle-ico" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <line x1="4" y1="7" x2="20" y2="7"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="17" x2="20" y2="17"></line>
+        </svg>
+      </button>
+    </header>
+
+    <slot />
+
+    <footer class="footer">
+      <p>© <span>{year}</span> Nikos Triantafyllou</p>
+      <p class="footer__meta">Built with Astro · Hosted on GitHub Pages</p>
+    </footer>
+
+    <script>
+      // ---- theme toggle (persisted) ----
+      const root = document.documentElement;
+      const toggle = document.getElementById("themeToggle");
+      toggle?.addEventListener("click", () => {
+        const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        try {
+          localStorage.setItem("theme", next);
+        } catch (e) {}
+      });
+
+      // ---- mobile nav menu ----
+      const navBtn = document.getElementById("navToggle");
+      const nav = navBtn?.closest(".nav");
+      if (navBtn && nav) {
+        const close = () => {
+          nav.classList.remove("open");
+          navBtn.setAttribute("aria-expanded", "false");
+          navBtn.setAttribute("aria-label", "Open menu");
+        };
+        navBtn.addEventListener("click", () => {
+          const open = nav.classList.toggle("open");
+          navBtn.setAttribute("aria-expanded", open ? "true" : "false");
+          navBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        });
+        nav
+          .querySelectorAll(".nav__links a")
+          .forEach((a) => a.addEventListener("click", close));
+        document.addEventListener("click", (e) => {
+          if (nav.classList.contains("open") && !nav.contains(e.target as Node)) close();
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") close();
+        });
+      }
+
+      // ---- reveal sections on scroll ----
+      const targets = document.querySelectorAll<HTMLElement>(".section");
+      targets.forEach((el) => el.classList.add("reveal"));
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12 },
+        );
+        targets.forEach((el) => io.observe(el));
+      } else {
+        targets.forEach((el) => el.classList.add("in"));
+      }
+    </script>
+  </body>
+</html>

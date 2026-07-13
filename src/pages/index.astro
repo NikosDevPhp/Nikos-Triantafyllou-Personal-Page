@@ -1,41 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Nikos Triantafyllou — Software Developer. Personal page." />
-  <meta name="author" content="Nikos Triantafyllou" />
-  <meta name="theme-color" content="#1b1a17" />
-  <title>Nikos Triantafyllou — Developer</title>
+---
+import Base from "../layouts/Base.astro";
+---
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23e07a5f'/%3E%3Ctext x='50' y='68' font-size='58' font-family='monospace' font-weight='700' text-anchor='middle' fill='%231b1a17'%3ENT%3C/text%3E%3C/svg%3E" />
-</head>
-<body>
-  <!-- decorative grain overlay -->
-  <div class="grain" aria-hidden="true"></div>
-
-  <!-- ===== NAV ===== -->
-  <header class="nav">
-    <a href="#top" class="nav__brand">
-      <span class="nav__mark">NT</span>
-      <span class="nav__name">Nikos&nbsp;Triantafyllou</span>
-    </a>
-    <nav class="nav__links" aria-label="Primary">
-      <a href="#about">About</a>
-      <a href="#stack">Stack</a>
-      <a href="#work">Work</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">
-      <span class="theme-toggle__dot"></span>
-    </button>
-  </header>
-
+<Base title="Nikos Triantafyllou — Developer" active="home">
   <main id="top">
     <!-- ===== HERO ===== -->
     <section class="hero">
@@ -167,8 +134,8 @@
             <span class="card__year">2023</span>
           </header>
           <h3 class="card__title">This Very Page</h3>
-          <p class="card__desc">A retro-modern personal site, hand-built and hosted on GitHub Pages.</p>
-          <ul class="card__stack"><li>HTML</li><li>CSS</li><li>JS</li></ul>
+          <p class="card__desc">A retro-modern personal site, built with Astro and hosted on GitHub Pages.</p>
+          <ul class="card__stack"><li>Astro</li><li>TypeScript</li><li>Markdown</li></ul>
         </article>
       </div>
     </section>
@@ -193,12 +160,4 @@
       </div>
     </section>
   </main>
-
-  <footer class="footer">
-    <p>© <span id="year">2026</span> Nikos Triantafyllou</p>
-    <p class="footer__meta">Hand-built · Hosted on GitHub Pages</p>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
+</Base>
