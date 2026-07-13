@@ -20,6 +20,33 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   });
 })();
 
+// ---- mobile nav menu ----
+(function () {
+  const btn = document.getElementById("navToggle");
+  if (!btn) return;
+  const nav = btn.closest(".nav");
+  const close = () => {
+    nav.classList.remove("open");
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-label", "Open menu");
+  };
+  btn.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  });
+  // close when a link is tapped or when tapping outside the header
+  nav.querySelectorAll(".nav__links a").forEach((a) =>
+    a.addEventListener("click", close)
+  );
+  document.addEventListener("click", (e) => {
+    if (nav.classList.contains("open") && !nav.contains(e.target)) close();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
+  });
+})();
+
 // ---- reveal sections on scroll ----
 (function () {
   const targets = document.querySelectorAll(".section");

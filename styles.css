@@ -120,6 +120,36 @@ a { color: inherit; text-decoration: none; }
 }
 [data-theme="dark"] .theme-toggle__dot { transform: translateX(18px); }
 
+/* hamburger — hidden on desktop, shown on narrow screens */
+.nav__toggle {
+  display: none;
+  width: 42px; height: 34px;
+  border: 2px solid var(--ink);
+  background: var(--paper-2);
+  border-radius: 9px;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  flex-shrink: 0;
+}
+.nav__toggle .bar,
+.nav__toggle .bar::before,
+.nav__toggle .bar::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  width: 18px; height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform .25s ease, opacity .2s ease, top .25s ease;
+}
+.nav__toggle .bar { top: 15px; }
+.nav__toggle .bar::before { top: -6px; left: 0; }
+.nav__toggle .bar::after  { top: 6px;  left: 0; }
+.nav.open .nav__toggle .bar { background: transparent; }
+.nav.open .nav__toggle .bar::before { top: 0; transform: rotate(45deg); }
+.nav.open .nav__toggle .bar::after  { top: 0; transform: rotate(-45deg); }
+
 /* ===================== HERO ===================== */
 .hero {
   position: relative;
@@ -346,7 +376,30 @@ a { color: inherit; text-decoration: none; }
   .hero { grid-template-columns: 1fr; }
   .hero__terminal { transform: rotate(0); order: 2; }
   .about { grid-template-columns: 1fr; }
-  .nav__links { display: none; }
+
+  .nav__toggle { display: block; margin-left: auto; order: 2; }
+  .theme-toggle { order: 3; }
+
+  /* nav links become a dropdown panel under the header */
+  .nav__links {
+    order: 4;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: color-mix(in srgb, var(--paper) 97%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--ink);
+    padding: .3rem clamp(1rem, 4vw, 2.5rem) .8rem;
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .22s ease, transform .22s ease;
+  }
+  .nav.open .nav__links { opacity: 1; transform: none; pointer-events: auto; }
+  .nav__links a { padding: .85rem .2rem; border-bottom: 1px dashed var(--line); font-size: 1.05rem; }
+  .nav__links a:last-child { border-bottom: 0; }
+  .nav__links a::after { display: none; }
 }
 @media (max-width: 480px) {
   .hero__facts { gap: 1.2rem; }
