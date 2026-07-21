@@ -30,8 +30,9 @@ the repo. To publish a new one, I drop a file like
 `2026-08-01-some-title.md` into `src/content/blog/` — and it shows up here
 automatically.
 
+Like this:
 ```bash
-# publishing a new post is literally this
+touch src/content/blog/2026-08-01-some-title.md
 git add src/content/blog/2026-08-01-some-title.md
 git commit -m "New post"
 git push
